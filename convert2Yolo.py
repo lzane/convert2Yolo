@@ -371,7 +371,7 @@ class convert2Yolo(object):
                 img_path = str('%s/%s.jpg' % (image_dir, os.path.splitext(xml_name)[0]))
 
                 objects = root.findall('object')
-                if len(objects) == 0:
+                if len(objects) == 0 or objects[0].find('name').text=='not-a-real-object':
                     print(color.BOLD + color.RED + "ERROR : can't find object tag" + color.END)
 
                     if os.path.exists(xml_path):
